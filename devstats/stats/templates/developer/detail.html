@@ -23,7 +23,7 @@
   <h3>Top repositories</h3>
   {% for repo in top_repos %}
     <div class="repo">
-      <a href="{{ repo.get_github_url }}">{{ repo.name }}</a><br>
+      <a href="{{ repo.get_github_url }}" target="_blank">{{ repo.name }}</a><br>
       ⭐ {{ repo.stargazers_count }} stars<br>
       👁️‍ {{ repo.watchers_count }} watchers<br>
        {{ repo.forks_count }} forks

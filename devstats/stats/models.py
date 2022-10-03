@@ -91,7 +91,7 @@ class Repo(models.Model):
         unique_together = [('developer', 'name')]
 
     def __str__(self):
-        return f'{self.developer.name}/{self.name}'
+        return f'{self.developer.username}/{self.name}'
 
     def get_github_url(self):
-        return f'https://github.com/{self.developer.username}/{self.name}'
+        return 'https://github.com/' + self.__str__()
