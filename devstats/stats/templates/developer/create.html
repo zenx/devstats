@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Add a GitHub developer
+{% endblock %}
+
+{% block content %}
+  <h1>Add a GitHub developer</h1>
+  <form action="." method="post">
+    {{ form }}
+    {% csrf_token %}
+    <input type="submit" value="Add now">
+  </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ developer.username }}
+{% endblock %}
+
+{% block content %}
+  <div class="developer detail">
+    <img src="{{ developer.avatar_url }}" class="avatar">
+    <h1>{{ developer.name|default:developer.username }}</h1>
+    {% with developer.repos.count as total_repos %}
+      <h2>{{ total_repos }} repo{{ total_repos|pluralize }}</h2>
+    {% endwith %}
+    <p>
+      📍 {{ developer.location }}<br>
+      Followers: {{ developer.total_followers }}<br>
+      Following: {{ developer.total_following }}<br>
+      {% if developer.company %}{{ developer.company }}<br>{% endif %}
+      {% if developer.website_url %}
+        <a href="{{ developer.website_url }}" target="_blank">{{ developer.website_url }}</a>
+      {% endif %}
+    </p>
+  <h3>Top repositories</h3>
+  {% for repo in top_repos %}
+    <div class="repo">
+      <a href="{{ repo.get_github_url }}">{{ repo.name }}</a><br>
+      ⭐ {{ repo.stargazers_count }} stars<br>
+      👁️‍ {{ repo.watchers_count }} watchers<br>
+       {{ repo.forks_count }} forks
+    </div>
+  {% endfor %}
+  {% endblock %}

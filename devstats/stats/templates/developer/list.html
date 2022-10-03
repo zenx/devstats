@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Developers
+{% endblock %}
+
+{% block content %}
+  <h1>Developers</h1>
+  <br>
+  <a href="{% url "developer_create" %}" class="button">
+    Add new developer
+  </a>
+
+<br>
+<br>
+  {% for developer in developers %}
+    <div class="developer">
+      <a href="{% url 'developer_detail' developer.username %}">
+        <img src="{{ developer.avatar_url }}">
+      </a>
+      <a href="{% url 'developer_detail' developer.username %}">
+        @{{ developer.username }}
+      </a>
+      <br>
+      📍 {{ developer.location }}<br>
+      Repos: {{ developer.repos.count }}<br>
+      Languages: {{ developer.total_languages }}<br>
+      Followers: {{ developer.total_followers }}<br>
+      Following: {{ developer.total_following }}<br>
+    </div>
+  {% empty %}
+    There are no developers.
+  {% endfor %}
+  </div>
+{% endblock %}
