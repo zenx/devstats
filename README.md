@@ -8,6 +8,7 @@ Sample Django project using the Github API
 3. Install requirements with `pip install requirements.txt`
 4. Execute database migrations with `python manage.py migrate`
 5. Run the project on your local machine with the command `python manage.py runserver`
+6. To access the admin back-end create a superuser with `python manage.py createsuperuser`
 
 ## Additional Resources
 - PyGithub docs – https://pygithub.readthedocs.io/
