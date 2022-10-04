@@ -26,13 +26,13 @@ class Developer(models.Model):
         ordering = ['-id']
 
     def __init__(self, *args, **kwargs):
-        super(Developer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._gh_user = None
 
     def __str__(self):
         return self.username
 
-    def get_github_user(self):
+    def _get_github_user(self):
         """
         Retrieves a GitHub User
         """
@@ -48,7 +48,7 @@ class Developer(models.Model):
         """
         Updates developer profile data from the GitHub API
         """
-        gh_user = self.get_github_user()
+        gh_user = self._get_github_user()
         # update fields
         self.name = gh_user.name or ''
         self.location = gh_user.location or ''
@@ -66,7 +66,7 @@ class Developer(models.Model):
         Creates/updates user repositories from the Github API
         """
         # retrieve github user repos
-        gh_repos = self.get_github_user().get_repos(type='owner')
+        gh_repos = self._get_github_user().get_repos(type='owner')
         for gh_repo in gh_repos:
             # create repository if necessary
             repo, created = self.repos.get_or_create(name=gh_repo.name)
